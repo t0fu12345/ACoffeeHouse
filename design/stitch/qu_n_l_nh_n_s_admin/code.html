@@ -1,0 +1,482 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EspressoPro Admin - Staff Management</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#5b403c",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "espresso-deep": "#3E2723",
+                    "status-low-stock": "#D84315",
+                    "secondary-container": "#fdcdbc",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#ffdad4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "on-primary-fixed": "#2b1613",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-primary-container": "#ae8d87",
+                    "tertiary-fixed": "#ece0dc",
+                    "status-inactive": "#757575",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "mocha-accent": "#795548",
+                    "primary-fixed-dim": "#e3beb8",
+                    "on-secondary-fixed": "#2e150b",
+                    "outline": "#827472",
+                    "on-tertiary-fixed": "#201a18",
+                    "primary": "#271310",
+                    "on-tertiary-fixed-variant": "#4c4542",
+                    "secondary": "#7a5649",
+                    "primary-container": "#3e2723",
+                    "on-secondary-container": "#795548",
+                    "surface": "#f9f9f9",
+                    "on-surface-variant": "#504442",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffdbcf",
+                    "tertiary-fixed-dim": "#cfc4c0",
+                    "surface-bright": "#f9f9f9",
+                    "outline-variant": "#d3c3c0",
+                    "pos-surface": "#FFFFFF",
+                    "status-active": "#2E7D32",
+                    "background": "#f9f9f9",
+                    "latte-warm": "#D7CCC8",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container": "#eeeeee",
+                    "surface-container-low": "#f3f3f3",
+                    "on-tertiary-container": "#9c938f",
+                    "secondary-fixed-dim": "#ebbcac",
+                    "on-secondary-fixed-variant": "#603f33",
+                    "status-occupied": "#A1887F",
+                    "cream-base": "#F5F5F5",
+                    "inverse-primary": "#e3beb8",
+                    "surface-tint": "#745853",
+                    "tertiary-container": "#322c29",
+                    "tertiary": "#1d1815",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "24px",
+                    "touch-target-min": "48px",
+                    "container-max": "1440px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["\"Source Serif 4\""],
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["\"Source Serif 4\""],
+                    "title-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["\"Source Serif 4\""],
+                    "body-lg": ["Hanken Grotesk"],
+                    "pos-num-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-lg": ["Hanken Grotesk"],
+                    "display-lg": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "pos-num-lg": ["28px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #F5F5F5; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(215, 204, 200, 0.3);
+        }
+    </style>
+</head>
+<body class="text-on-surface bg-cream-base overflow-x-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-espresso-deep dark:bg-primary shadow-lg w-64" id="side-nav">
+<div class="p-margin-desktop flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-mocha-accent flex items-center justify-center">
+<span class="material-symbols-outlined text-latte-warm" data-icon="coffee">coffee</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-latte-warm">ACoffeeHouse</h1>
+<p class="font-label-lg text-label-lg text-latte-warm/70 opacity-80">Manager View</p>
+</div>
+</div>
+<nav class="flex-1 mt-6 px-4 space-y-2">
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="">Menu</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+<!-- Active State for Staff Management -->
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg bg-mocha-accent/20 border-l-4 border-mocha-accent text-mocha-accent transition-colors duration-200 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+<span class="">Staff</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="">Customers</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="">Reports</span>
+</a>
+</nav>
+
+<div class="px-4 py-6 border-t border-latte-warm/10 space-y-2">
+<a class="flex items-center px-4 py-2 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="">Settings</span>
+</a>
+<a class="flex items-center px-4 py-2 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="">Help</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface dark:bg-surface-dim shadow-sm z-30 sticky top-0">
+<div class="flex items-center space-x-6">
+<span class="font-headline-md text-headline-md text-espresso-deep dark:text-primary-fixed-dim">ACoffeeHouse Admin</span>
+<div class="hidden md:flex bg-surface-container-low px-3 py-1.5 rounded-full items-center space-x-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-mocha-accent text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48 font-body-md" placeholder="Search staff or code..." type="text">
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-latte-warm/10 transition-all duration-200 active:scale-95 relative">
+<span class="material-symbols-outlined text-espresso-deep" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-latte-warm/10 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-espresso-deep" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center space-x-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="font-label-lg text-label-lg text-espresso-deep leading-tight">Admin User</p>
+<p class="text-[10px] text-mocha-accent uppercase tracking-wider font-bold">Root Access</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-mocha-accent object-cover" data-alt="A professional high-resolution studio portrait of a corporate administrator in minimalist business attire, soft cinematic lighting, neutral gray background, modern professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMAcZ0fIgCRrOQAKQnVkC7n885RZ1lfvqkGfcFxuj8vev9PEsYU5DQLRlw_iZLJE0mkP1xM3gfi6qCJksL4zYCiFjS9zn9k8gD4swd0h-wo_5wZrBLzJutZ5UtDgQU6M0dqiBeiQ03gm-kQ6JT8DCaOZTSTNihmDZklUCWptT06mfN3yMy243UVy_PD7FcVJIGZu369K8k9DrrTbeAN-3r9v5agq2RYs-rrQYJwzKp1V8IqYY93qeIfEe6T8zPdk_CeeHk1JH_tcs">
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-margin-desktop space-y-8 max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-espresso-deep">Staff Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage employee credentials, roles, and compensation structure.</p>
+</div>
+<button class="bg-espresso-deep text-white px-6 py-3 rounded-xl font-label-lg text-label-lg flex items-center space-x-2 transition-all duration-200 active:scale-95 shadow-md hover:bg-mocha-accent">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="">Add Employee</span>
+</button>
+</div>
+<!-- Dashboard Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-latte-warm/20 flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-latte-warm/20 flex items-center justify-center text-mocha-accent">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Total Staff</p>
+<p class="text-headline-md font-headline-md text-espresso-deep">24</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-latte-warm/20 flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-status-active/10 flex items-center justify-center text-status-active">
+<span class="material-symbols-outlined" data-icon="radio_button_checked">radio_button_checked</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Clocked In</p>
+<p class="text-headline-md font-headline-md text-status-active">18</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-latte-warm/20 flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-mocha-accent/10 flex items-center justify-center text-mocha-accent">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Monthly Payroll</p>
+<p class="text-headline-md font-headline-md text-espresso-deep">$42.5k</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-latte-warm/20 flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Average Shift</p>
+<p class="text-headline-md font-headline-md text-espresso-deep">7.5h</p>
+</div>
+</div>
+</div>
+<!-- Main Split Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Staff List (Left/Main Column) -->
+<div class="lg:col-span-2 space-y-4">
+<div class="bg-white rounded-3xl shadow-lg border border-latte-warm/20 overflow-hidden">
+<div class="px-6 py-4 border-b border-latte-warm/10 bg-cream-base/50 flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg text-espresso-deep">Employee Directory</h3>
+<div class="flex space-x-2">
+<button class="p-2 rounded-lg hover:bg-latte-warm/20 text-mocha-accent transition-colors"><span class="material-symbols-outlined" data-icon="filter_list">filter_list</span></button>
+<button class="p-2 rounded-lg hover:bg-latte-warm/20 text-mocha-accent transition-colors"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-cream-base/30 text-label-lg font-label-lg text-on-surface-variant border-b border-latte-warm/10">
+<th class="px-6 py-4">Code</th>
+<th class="px-6 py-4">Name</th>
+<th class="px-6 py-4">Phone</th>
+<th class="px-6 py-4">Role</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-latte-warm/10">
+<!-- Row 1 -->
+<tr class="hover:bg-latte-warm/5 transition-colors cursor-pointer group active-staff-row" onclick="selectStaff('EP-001')">
+<td class="px-6 py-4 font-label-md text-label-md text-mocha-accent">EP-001</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-espresso-deep text-[12px] font-bold">JD</div>
+<span class="font-body-md text-body-md font-semibold">Julianna DeWitt</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+1 (555) 012-3456</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-mocha-accent/10 text-mocha-accent rounded text-[11px] font-bold uppercase tracking-tight">Manager</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5 text-status-active">
+<span class="w-2 h-2 rounded-full bg-status-active animate-pulse"></span>
+<span class="text-label-md font-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-latte-warm/5 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-label-md text-label-md text-mocha-accent">EP-004</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A portrait of a male barista with a friendly expression, wearing a minimalist coffee shop apron, soft natural sunlight streaming through a window, warm and inviting café atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLoJmrGyZWgIZ1mP3UAVw7llOe1dvCbwoZUJmQZqgrwWSYAqeih551W8iy-h3_JxVYWXzfH4Pnb64uHBrVJjm9TykeVyjrigDAUcqpPwBk8oSo6_zkyOo7ZQO4uMu-ebcWdqtJg_tsjiLZk9zviRk5a8R6VO66EFYEhGb8PYu-VaPyZrd3lblESnDBZJZw8b4dunDmu91FVCM-lKSbXmAABKSPwokucAkHyGSDI5Dciml9bNh5zy03bAmSROSOhQ4w9lEC2qcJ7ns">
+<span class="font-body-md text-body-md font-semibold">Marcus Thorne</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+1 (555) 012-7890</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-espresso-deep/5 text-on-surface-variant rounded text-[11px] font-bold uppercase tracking-tight">Barista</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5 text-status-active">
+<span class="w-2 h-2 rounded-full bg-status-active"></span>
+<span class="text-label-md font-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-latte-warm/5 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-label-md text-label-md text-mocha-accent">EP-012</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-latte-warm flex items-center justify-center text-espresso-deep text-[12px] font-bold">SL</div>
+<span class="font-body-md text-body-md font-semibold">Sarah Lousie</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+1 (555) 012-5544</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-espresso-deep/5 text-on-surface-variant rounded text-[11px] font-bold uppercase tracking-tight">Waiter</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5 text-status-inactive">
+<span class="w-2 h-2 rounded-full bg-status-inactive"></span>
+<span class="text-label-md font-label-md">Off-Duty</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-latte-warm/5 transition-colors cursor-pointer group">
+<td class="px-6 py-4 font-label-md text-label-md text-mocha-accent">EP-015</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-espresso-deep text-[12px] font-bold">EK</div>
+<span class="font-body-md text-body-md font-semibold">Ethan Knight</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md text-on-surface-variant">+1 (555) 012-9988</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-espresso-deep/5 text-on-surface-variant rounded text-[11px] font-bold uppercase tracking-tight">Cashier</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center space-x-1.5 text-status-active">
+<span class="w-2 h-2 rounded-full bg-status-active"></span>
+<span class="text-label-md font-label-md">Active</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-latte-warm/10 flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant">Showing 4 of 24 employees</span>
+<div class="flex space-x-2">
+<button class="w-8 h-8 rounded border border-latte-warm/30 flex items-center justify-center text-mocha-accent disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span></button>
+<button class="w-8 h-8 rounded border border-mocha-accent bg-mocha-accent text-white flex items-center justify-center text-label-md font-label-md">1</button>
+<button class="w-8 h-8 rounded border border-latte-warm/30 flex items-center justify-center text-mocha-accent hover:bg-latte-warm/10 transition-colors text-label-md font-label-md">2</button>
+<button class="w-8 h-8 rounded border border-latte-warm/30 flex items-center justify-center text-mocha-accent hover:bg-latte-warm/10 transition-colors text-label-md font-label-md">3</button>
+<button class="w-8 h-8 rounded border border-latte-warm/30 flex items-center justify-center text-mocha-accent hover:bg-latte-warm/10 transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Profile Detail / Permissions (Right Sidebar) -->
+<div class="space-y-6">
+<div class="bg-white rounded-3xl shadow-lg border border-latte-warm/20 p-8 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full border-4 border-mocha-accent p-1">
+<div class="w-full h-full rounded-full bg-primary-fixed flex items-center justify-center text-espresso-deep text-2xl font-bold">JD</div>
+</div>
+<span class="absolute bottom-1 right-1 w-5 h-5 bg-status-active border-2 border-white rounded-full"></span>
+</div>
+<h4 class="font-headline-md text-headline-md text-espresso-deep">Julianna DeWitt</h4>
+<p class="font-label-lg text-label-lg text-mocha-accent mb-6">Manager • ID: EP-001</p>
+<div class="w-full space-y-4 text-left">
+<div class="p-4 rounded-2xl bg-cream-base border border-latte-warm/10">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">Financial Setup</p>
+<div class="flex justify-between items-center">
+<span class="font-label-lg text-label-lg text-on-surface">Base Salary</span>
+<span class="font-title-lg text-title-lg text-espresso-deep font-bold">$4,250.00 <small class="text-body-md font-normal text-on-surface-variant">/mo</small></span>
+</div>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-3">Role Permissions</p>
+<ul class="space-y-2">
+<li class="flex items-center space-x-3 text-body-md text-on-surface">
+<span class="material-symbols-outlined text-status-active text-[20px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Full Inventory Access</span>
+</li>
+<li class="flex items-center space-x-3 text-body-md text-on-surface">
+<span class="material-symbols-outlined text-status-active text-[20px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Refund Authorization</span>
+</li>
+<li class="flex items-center space-x-3 text-body-md text-on-surface">
+<span class="material-symbols-outlined text-status-active text-[20px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Staff Schedule Editing</span>
+</li>
+<li class="flex items-center space-x-3 text-body-md text-on-surface opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="cancel">cancel</span>
+<span class="">System Root Settings</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="w-full grid grid-cols-2 gap-3 mt-8">
+<button class="py-3 rounded-xl border border-outline text-on-surface-variant font-label-lg text-label-lg hover:bg-latte-warm/10 transition-colors">Edit Profile</button>
+<button class="py-3 rounded-xl bg-mocha-accent text-white font-label-lg text-label-lg hover:brightness-110 transition-all shadow-sm">Manage Role</button>
+</div>
+</div>
+<!-- Performance Micro-Card -->
+<div class="bg-espresso-deep rounded-3xl p-6 text-latte-warm relative overflow-hidden">
+
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<p class="text-label-lg font-label-lg opacity-70">Shift Efficiency</p>
+<span class="bg-mocha-accent/30 text-mocha-accent px-2 py-0.5 rounded text-[10px] font-bold">+12%</span>
+</div>
+<div class="flex items-end space-x-2">
+<span class="text-display-lg font-display-lg leading-none">94.8</span>
+<span class="text-title-lg font-title-lg mb-1">%</span>
+</div>
+<div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-mocha-accent rounded-full" style="width: 94.8%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function selectStaff(code) {
+            // Placeholder for row selection interaction
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(r => r.classList.remove('bg-latte-warm/10', 'border-l-4', 'border-mocha-accent'));
+            const target = event.currentTarget;
+            target.classList.add('bg-latte-warm/10', 'border-l-4', 'border-mocha-accent');
+        }
+
+        // Add some subtle parallax or hover effects
+        document.addEventListener('mousemove', (e) => {
+            const panels = document.querySelectorAll('.glass-panel');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            panels.forEach(panel => {
+                panel.style.transform = `translate(${x * 5}px, ${y * 5}px)`;
+            });
+        });
+    </script>
+
+
+
+</body></html>

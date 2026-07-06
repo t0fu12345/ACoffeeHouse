@@ -1,0 +1,518 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>EspressoPro Admin - Product Management</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-fixed-variant": "#5b403c",
+                "on-tertiary": "#ffffff",
+                "surface-dim": "#dadada",
+                "espresso-deep": "#3E2723",
+                "status-low-stock": "#D84315",
+                "secondary-container": "#fdcdbc",
+                "on-error-container": "#93000a",
+                "primary-fixed": "#ffdad4",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#1a1c1c",
+                "on-primary-fixed": "#2b1613",
+                "surface-variant": "#e2e2e2",
+                "surface-container-highest": "#e2e2e2",
+                "on-primary-container": "#ae8d87",
+                "tertiary-fixed": "#ece0dc",
+                "status-inactive": "#757575",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "mocha-accent": "#795548",
+                "primary-fixed-dim": "#e3beb8",
+                "on-secondary-fixed": "#2e150b",
+                "outline": "#827472",
+                "on-tertiary-fixed": "#201a18",
+                "primary": "#271310",
+                "on-tertiary-fixed-variant": "#4c4542",
+                "secondary": "#7a5649",
+                "primary-container": "#3e2723",
+                "on-secondary-container": "#795548",
+                "surface": "#f9f9f9",
+                "on-surface-variant": "#504442",
+                "error-container": "#ffdad6",
+                "secondary-fixed": "#ffdbcf",
+                "tertiary-fixed-dim": "#cfc4c0",
+                "surface-bright": "#f9f9f9",
+                "outline-variant": "#d3c3c0",
+                "pos-surface": "#FFFFFF",
+                "status-active": "#2E7D32",
+                "background": "#f9f9f9",
+                "latte-warm": "#D7CCC8",
+                "error": "#ba1a1a",
+                "inverse-surface": "#2f3131",
+                "surface-container-high": "#e8e8e8",
+                "surface-container": "#eeeeee",
+                "surface-container-low": "#f3f3f3",
+                "on-tertiary-container": "#9c938f",
+                "secondary-fixed-dim": "#ebbcac",
+                "on-secondary-fixed-variant": "#603f33",
+                "status-occupied": "#A1887F",
+                "cream-base": "#F5F5F5",
+                "inverse-primary": "#e3beb8",
+                "surface-tint": "#745853",
+                "tertiary-container": "#322c29",
+                "tertiary": "#1d1815",
+                "inverse-on-surface": "#f1f1f1",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1a1c1c"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "base": "8px",
+                "margin-desktop": "24px",
+                "touch-target-min": "48px",
+                "container-max": "1440px",
+                "gutter": "16px"
+            },
+            "fontFamily": {
+                "headline-md": ["\"Source Serif 4\""],
+                "label-md": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["\"Source Serif 4\""],
+                "title-lg": ["Hanken Grotesk"],
+                "headline-lg": ["\"Source Serif 4\""],
+                "body-lg": ["Hanken Grotesk"],
+                "pos-num-lg": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "label-lg": ["Hanken Grotesk"],
+                "display-lg": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "pos-num-lg": ["28px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #D7CCC8; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #795548; }
+        
+        .switch-checkbox:checked + .switch-label { background-color: #2E7D32; }
+        .switch-checkbox:checked + .switch-label .switch-dot { transform: translateX(1.25rem); }
+
+        .tactile-btn {
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 6px -1px rgba(62, 39, 35, 0.1), 0 2px 4px -1px rgba(62, 39, 35, 0.06);
+        }
+        .tactile-btn:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-cream-base font-body-md text-on-background min-h-screen">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-espresso-deep dark:bg-primary shadow-lg w-64" id="side-nav">
+<div class="p-margin-desktop flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-mocha-accent flex items-center justify-center">
+<span class="material-symbols-outlined text-latte-warm">coffee</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-latte-warm">ACoffeeHouse</h1>
+<p class="font-label-lg text-label-lg text-latte-warm/70 opacity-80">Manager View</p>
+</div>
+</div>
+<nav class="flex-1 mt-6 px-4 space-y-2">
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<!-- Active State for Menu -->
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg bg-mocha-accent/20 border-l-4 border-mocha-accent text-mocha-accent transition-colors duration-200 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="">Menu</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="">Staff</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="">Customers</span>
+</a>
+<a class="flex items-center px-4 py-3 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 hover:text-latte-warm font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="">Reports</span>
+</a>
+</nav>
+
+<div class="px-4 py-6 border-t border-latte-warm/10 space-y-2">
+<a class="flex items-center px-4 py-2 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="">Settings</span>
+</a>
+<a class="flex items-center px-4 py-2 space-x-3 rounded-lg text-latte-warm/70 transition-colors duration-200 hover:bg-mocha-accent/10 font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="">Help</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex flex-col min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 bg-surface dark:bg-surface-dim shadow-sm z-30 sticky top-0">
+<div class="flex items-center space-x-6">
+<span class="font-headline-md text-headline-md text-espresso-deep dark:text-primary-fixed-dim">ACoffeeHouse Admin</span>
+<div class="hidden md:flex bg-surface-container-low px-3 py-1.5 rounded-full items-center space-x-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-mocha-accent text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48 font-body-md" placeholder="Search coffee ..." type="text">
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-latte-warm/10 transition-all duration-200 active:scale-95 relative">
+<span class="material-symbols-outlined text-espresso-deep" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-latte-warm/10 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined text-espresso-deep" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center space-x-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="font-label-lg text-label-lg text-espresso-deep leading-tight">Admin User</p>
+<p class="text-[10px] text-mocha-accent uppercase tracking-wider font-bold">Root Access</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-mocha-accent object-cover" data-alt="A professional high-resolution studio portrait of a corporate administrator in minimalist business attire, soft cinematic lighting, neutral gray background, modern professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMAcZ0fIgCRrOQAKQnVkC7n885RZ1lfvqkGfcFxuj8vev9PEsYU5DQLRlw_iZLJE0mkP1xM3gfi6qCJksL4zYCiFjS9zn9k8gD4swd0h-wo_5wZrBLzJutZ5UtDgQU6M0dqiBeiQ03gm-kQ6JT8DCaOZTSTNihmDZklUCWptT06mfN3yMy243UVy_PD7FcVJIGZu369K8k9DrrTbeAN-3r9v5agq2RYs-rrQYJwzKp1V8IqYY93qeIfEe6T8zPdk_CeeHk1JH_tcs">
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-desktop flex flex-col gap-gutter">
+<!-- Page Header & Action -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-espresso-deep">Product Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Update and manage your cafe's menu offerings.</p>
+</div>
+<button class="h-touch-target-min px-6 bg-espresso-deep text-on-primary rounded-xl font-label-lg text-label-lg flex items-center gap-3 tactile-btn">
+<span class="material-symbols-outlined">add_circle</span>
+                    Add New Product
+                </button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-white rounded-xl shadow-sm border border-latte-warm/30 p-4 flex flex-wrap items-center gap-4">
+<!-- Search -->
+<div class="relative flex-1 min-w-[300px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-cream-base border border-latte-warm rounded-lg focus:ring-2 focus:ring-mocha-accent focus:border-mocha-accent outline-none font-body-md transition-all" placeholder="Search products by name or SKU..." type="text">
+</div>
+<!-- Category Filter -->
+<div class="relative">
+<select class="appearance-none bg-cream-base border border-latte-warm rounded-lg px-4 py-2 pr-10 focus:ring-2 focus:ring-mocha-accent outline-none font-label-lg text-label-lg text-on-surface cursor-pointer min-w-[160px]">
+<option>All Categories</option>
+<option>Espresso Drinks</option>
+<option>Pastries</option>
+<option>Sandwiches</option>
+<option>Retail Beans</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="flex items-center gap-2 bg-cream-base p-1 rounded-lg border border-latte-warm">
+<button class="px-4 py-1 rounded-md bg-white shadow-sm font-label-lg text-label-lg text-espresso-deep transition-all">All</button>
+<button class="px-4 py-1 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-espresso-deep transition-all">Active</button>
+<button class="px-4 py-1 rounded-md font-label-lg text-label-lg text-on-surface-variant hover:text-espresso-deep transition-all">Inactive</button>
+</div>
+<!-- Export Action -->
+<button class="p-2 border border-latte-warm rounded-lg text-on-surface-variant hover:bg-cream-base transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+<span class="font-label-lg text-label-lg">Export</span>
+</button>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white rounded-xl shadow-sm border border-latte-warm/30 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-cream-base border-b border-latte-warm">
+<tr>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Thumbnail</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">SKU</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Product Name</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Category</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant">Base Price</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant text-center">Status</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-latte-warm/20">
+<!-- Row 1 -->
+<tr class="hover:bg-cream-base/50 transition-colors group">
+<td class="px-6 py-3">
+<div class="w-12 h-12 rounded-lg bg-latte-warm overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a perfectly crafted latte with intricate heart-shaped latte art. The espresso is a rich, dark brown, and the milk foam is velvety and creamy. The cup is a high-end ceramic vessel in a warm, earthy tone, placed on a dark wooden surface with soft bokeh lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXncpuPjX-CsHS0juIWcnHOQU6YaH347Uo35KgtEBnZz4FhNiSfQ69uViPOQCSSEq9cMg7qU3PZ2TfxKxkMaE8CoQNU8WRwPzZOJkMOANuRnqIgZzMMSz8DgKZr-v3zzobNaQ3vqhu0pWdfrL-6PQ2k8e_j2yeI4AcwOIERZQaNePz0AzyTX2E0U9wBQvoYAO3ukWs9MIclo5G0yFt4eKnpWleTOCI-4tWp5prSOQIuHi6XzcvEHmVWx2TPpGy9uxCF-lw0P86f1Q">
+</div>
+</td>
+<td class="px-6 py-3 font-mono text-sm text-on-surface-variant">EP-LAT-01</td>
+<td class="px-6 py-3 font-title-lg text-title-lg text-espresso-deep">Signature Latte</td>
+<td class="px-6 py-3">
+<span class="px-3 py-1 bg-latte-warm/20 text-mocha-accent rounded-full text-xs font-bold uppercase tracking-wider">Espresso Drinks</span>
+</td>
+<td class="px-6 py-3 font-pos-num-lg text-label-lg text-espresso-deep">$4.50</td>
+<td class="px-6 py-3 text-center">
+<div class="flex items-center justify-center">
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="hidden switch-checkbox" id="status-1" type="checkbox">
+<label class="switch-label absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-status-inactive rounded-full transition-all duration-300" for="status-1">
+<span class="switch-dot absolute left-0.5 bottom-0.5 bg-white w-4 h-4 rounded-full transition-all duration-300"></span>
+</label>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="Edit Product">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="View Recipe">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Delete Product">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-cream-base/50 transition-colors group">
+<td class="px-6 py-3">
+<div class="w-12 h-12 rounded-lg bg-latte-warm overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a golden-brown, flaky almond croissant on a white marble countertop. The pastry is dusted with powdered sugar and topped with toasted almond slivers. The lighting is bright and airy, suggesting a high-end bakery environment with clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMzjT7HCyofGDR3nVVqFBFPML0PoscGpNXF8bnhtcF5AKBVZHE-yQfoLwKvwWv-X-KMP4KcBRPTA6zYudw9aBf_UaiktCIsolX1dhh6b4rpRB_ZdY4QA6x4aMV90_7VPE7dsX4M0jL1mpiPNPkVBQoStY5b_UZU3F8PyrN49xz-bXYlvOu3AF3iIL5l-GZ_qsLxVfT4Y8mRt1DAqcpW6sTCt_S1VppVLMWQMWoLWAJDaYZFJZ0rpQ3BbSCVK2C55Hb8usINvlzo10">
+</div>
+</td>
+<td class="px-6 py-3 font-mono text-sm text-on-surface-variant">EP-BAK-14</td>
+<td class="px-6 py-3 font-title-lg text-title-lg text-espresso-deep">Almond Croissant</td>
+<td class="px-6 py-3">
+<span class="px-3 py-1 bg-latte-warm/20 text-mocha-accent rounded-full text-xs font-bold uppercase tracking-wider">Pastries</span>
+</td>
+<td class="px-6 py-3 font-pos-num-lg text-label-lg text-espresso-deep">$3.75</td>
+<td class="px-6 py-3 text-center">
+<div class="flex items-center justify-center">
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="hidden switch-checkbox" id="status-2" type="checkbox">
+<label class="switch-label absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-status-inactive rounded-full transition-all duration-300" for="status-2">
+<span class="switch-dot absolute left-0.5 bottom-0.5 bg-white w-4 h-4 rounded-full transition-all duration-300"></span>
+</label>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="Edit Product">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="View Recipe">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Delete Product">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 - Low Stock Example -->
+<tr class="hover:bg-cream-base/50 transition-colors group">
+<td class="px-6 py-3">
+<div class="w-12 h-12 rounded-lg bg-latte-warm overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A stylish, matte-black bag of premium espresso beans featuring a minimalist label with 'EspressoPro' branding. The bag is surrounded by loose, dark-roasted coffee beans on a rustic wooden surface. The mood is sophisticated and premium, with high contrast and moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2tRYFLkCUeTklPI7Dwa4aM8fu7wZvNhc7_7n766zL4QL_DUpigR9EW1jdmaElWGJOZRVmeF235mnZI0GezOYzWBP2mI3P1zhmvZdICaU6ptbosur0qTB1unqpHxRUtDIF2bc7iPzwwApTdTH3f1zKAGvV-SS97wh-giPOvhBdNZCelXktONXtNZMYlEP-Q5GUSgnNh3uwMXyL8kwRt3DAa6P5BPE7ZTZ6zclKDNilVFM2h0OTEFwi_Q5TYrEB8Utnjk4twwIxV14">
+</div>
+</td>
+<td class="px-6 py-3 font-mono text-sm text-on-surface-variant">EP-RTB-05</td>
+<td class="px-6 py-3 font-title-lg text-title-lg text-espresso-deep flex items-center gap-2">
+                                    House Blend (1lb)
+                                    <span class="material-symbols-outlined text-status-low-stock text-lg" title="Low Stock">warning</span>
+</td>
+<td class="px-6 py-3">
+<span class="px-3 py-1 bg-latte-warm/20 text-mocha-accent rounded-full text-xs font-bold uppercase tracking-wider">Retail Beans</span>
+</td>
+<td class="px-6 py-3 font-pos-num-lg text-label-lg text-espresso-deep">$18.00</td>
+<td class="px-6 py-3 text-center">
+<div class="flex items-center justify-center">
+<div class="relative inline-block w-10 h-5">
+<input class="hidden switch-checkbox" id="status-3" type="checkbox">
+<label class="switch-label absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-status-inactive rounded-full transition-all duration-300" for="status-3">
+<span class="switch-dot absolute left-0.5 bottom-0.5 bg-white w-4 h-4 rounded-full transition-all duration-300"></span>
+</label>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="Edit Product">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="View Recipe">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Delete Product">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-cream-base/50 transition-colors group">
+<td class="px-6 py-3">
+<div class="w-12 h-12 rounded-lg bg-latte-warm overflow-hidden border border-outline-variant shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A vibrant and fresh avocado toast on thick-cut sourdough bread. The toast is garnished with thinly sliced radishes, a sprinkle of chili flakes, and a drizzle of olive oil. The setting is bright and cheerful, with a minimalist ceramic plate and natural morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbg2KQhvhrVl7zLd1G9M03XjLD0RHLRgOtRajl7DJnwJBfX035MtjtQvVUAP06f31CWkz6bmTwbq_9RsZ0oT1b5Xv7CwwpUt4qVSNWE0V6PVgMTBXCOII_q8GNkCWTr7uMb-s7UjsDKJ0zeMI4LIg3O4z7fX1Hxe9NYoe-WeDvkpKW_YKYlqZ4a_7VegUJihjWP0zl3cB-PxfsFDtX-p1qF31A1BWxSkDUgL9M3NscMyRWWX-ubg7NZ6c0_0xwAtYJPxhSSaLoPpg">
+</div>
+</td>
+<td class="px-6 py-3 font-mono text-sm text-on-surface-variant">EP-SAN-09</td>
+<td class="px-6 py-3 font-title-lg text-title-lg text-espresso-deep">Avocado Toast</td>
+<td class="px-6 py-3">
+<span class="px-3 py-1 bg-latte-warm/20 text-mocha-accent rounded-full text-xs font-bold uppercase tracking-wider">Sandwiches</span>
+</td>
+<td class="px-6 py-3 font-pos-num-lg text-label-lg text-espresso-deep">$9.25</td>
+<td class="px-6 py-3 text-center">
+<div class="flex items-center justify-center">
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="hidden switch-checkbox" id="status-4" type="checkbox">
+<label class="switch-label absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-status-inactive rounded-full transition-all duration-300" for="status-4">
+<span class="switch-dot absolute left-0.5 bottom-0.5 bg-white w-4 h-4 rounded-full transition-all duration-300"></span>
+</label>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="Edit Product">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-mocha-accent hover:bg-latte-warm/20 rounded-lg transition-colors" title="View Recipe">
+<span class="material-symbols-outlined">menu_book</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Delete Product">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-cream-base border-t border-latte-warm flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Showing 1 to 4 of 48 products</span>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded hover:bg-latte-warm/20 text-on-surface-variant transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-3 py-1 rounded bg-espresso-deep text-on-primary font-bold">1</button>
+<button class="px-3 py-1 rounded hover:bg-latte-warm/20 text-on-surface-variant">2</button>
+<button class="px-3 py-1 rounded hover:bg-latte-warm/20 text-on-surface-variant">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="px-3 py-1 rounded hover:bg-latte-warm/20 text-on-surface-variant">12</button>
+<button class="p-2 rounded hover:bg-latte-warm/20 text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Stats Summary (Atmospheric Design) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mt-4">
+<div class="bg-mocha-accent/10 border border-mocha-accent/20 p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-lg text-label-lg text-mocha-accent uppercase tracking-wider">Total Products</span>
+<span class="material-symbols-outlined text-mocha-accent">inventory_2</span>
+</div>
+<span class="font-display-lg text-display-lg text-espresso-deep">142</span>
+</div>
+<div class="bg-status-active/10 border border-status-active/20 p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-lg text-label-lg text-status-active uppercase tracking-wider">Active Menu</span>
+<span class="material-symbols-outlined text-status-active">check_circle</span>
+</div>
+<span class="font-display-lg text-display-lg text-espresso-deep">128</span>
+</div>
+<div class="bg-status-low-stock/10 border border-status-low-stock/20 p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="font-label-lg text-label-lg text-status-low-stock uppercase tracking-wider">Low Inventory</span>
+<span class="material-symbols-outlined text-status-low-stock">warning</span>
+</div>
+<span class="font-display-lg text-display-lg text-espresso-deep">14</span>
+</div>
+<div class="bg-secondary-container p-6 rounded-xl flex flex-col justify-between relative overflow-hidden group">
+<div class="z-10 relative">
+<div class="flex justify-between items-start">
+<span class="font-label-lg text-label-lg text-on-secondary-fixed uppercase tracking-wider">Average Price</span>
+<span class="material-symbols-outlined text-on-secondary-fixed">payments</span>
+</div>
+<span class="font-display-lg text-display-lg text-on-secondary-fixed">$6.42</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">coffee</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple toggle state simulation
+        document.querySelectorAll('.switch-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const label = e.target.parentElement.closest('tr').querySelector('td:nth-child(3)');
+                if(!e.target.checked) {
+                    label.classList.add('opacity-50');
+                } else {
+                    label.classList.remove('opacity-50');
+                }
+            });
+        });
+
+        // Search bar hover interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-mocha-accent/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-mocha-accent/20');
+        });
+    </script>
+
+
+
+</body></html>

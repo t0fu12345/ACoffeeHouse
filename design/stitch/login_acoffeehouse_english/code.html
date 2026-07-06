@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | ACoffeeHouse Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700&amp;family=Work+Sans:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#20201f",
+                        "on-secondary-container": "#cfb088",
+                        "background": "#131313",
+                        "tertiary": "#c3cca6",
+                        "on-surface-variant": "#d4c4b7",
+                        "on-secondary-fixed-variant": "#594323",
+                        "inverse-primary": "#7d562d",
+                        "surface": "#131313",
+                        "surface-bright": "#393939",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed": "#171e06",
+                        "error": "#ffb4ab",
+                        "outline": "#9c8e82",
+                        "on-tertiary-fixed-variant": "#424a2d",
+                        "on-secondary": "#402d0f",
+                        "inverse-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#623f18",
+                        "on-tertiary-container": "#3c4427",
+                        "secondary-container": "#594323",
+                        "primary-fixed-dim": "#f0bd8b",
+                        "on-primary": "#482904",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#291800",
+                        "on-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "outline-variant": "#50453b",
+                        "tertiary-fixed-dim": "#c2cba4",
+                        "surface-container-highest": "#353535",
+                        "primary": "#f2be8c",
+                        "secondary-fixed-dim": "#e1c298",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#dee7bf",
+                        "surface-variant": "#353535",
+                        "primary-container": "#d4a373",
+                        "surface-tint": "#f0bd8b",
+                        "tertiary-container": "#a8b18c",
+                        "primary-fixed": "#ffdcbd",
+                        "on-primary-fixed": "#2c1600",
+                        "on-tertiary": "#2c3318",
+                        "surface-dim": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffddb2",
+                        "on-primary-container": "#5b3912",
+                        "surface-container-low": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "sidebar-width": "280px",
+                        "touch-target-min": "48px",
+                        "gutter": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Work Sans"],
+                        "body-lg": ["Work Sans"],
+                        "label-caps": ["JetBrains Mono"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-sm": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Work Sans", sans-serif;
+        }
+        .glass-effect {
+            background: rgba(20, 20, 19, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 196, 183, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-hidden bg-background selection:bg-primary selection:text-on-primary">
+<!-- Background Layer -->
+<div class="fixed inset-0 z-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLurI56N8DDHKAE4A_dv7LSuhRodW6RvtZy4Ebwe3NyAQXzdp9B1Z_4-aKyFCk6tDzRZ4XciGuKQGc0ZlgqKpvgghVPw1GDSYia7p_0WJL6_tKvfLmIzzwOp00jVOzUN7QFQnPPImh-GRn4cmKAGO6a14isV7oq2IuGikvVKj6gQqC3C4016Q6BpDbAQvnmisJWrqmKfvu-XrwRsEUWnJkzDIUbdNUytZVyIwuIuM1pVZF4zCDPbFbk4wPI');">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+</div>
+<!-- Main Content Shell -->
+<main class="flex-grow flex items-center justify-center p-6 relative z-10">
+<!-- Login Card -->
+<div class="glass-effect w-full max-w-[440px] p-8 md:p-10 rounded-xl shadow-2xl transition-all duration-300">
+<!-- Brand Identity -->
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-on-primary-container mb-4 shadow-lg">
+<span class="material-symbols-outlined text-4xl">coffee</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">ACoffeeHouse</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enterprise Management System</p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-6" onsubmit="return false;">
+<!-- Identity Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block ml-1">Username or Phone</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full h-[52px] pl-12 pr-4 bg-surface-container-low/50 border border-outline-variant rounded-lg font-body-lg text-body-lg text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="Enter your credentials" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block ml-1">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full h-[52px] pl-12 pr-12 bg-surface-container-low/50 border border-outline-variant rounded-lg font-body-lg text-body-lg text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder="••••••••" type="password"/>
+<button aria-label="Toggle password visibility" class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember & Forgot -->
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Remember me</span>
+</label>
+<a class="font-body-sm text-body-sm text-primary font-medium hover:text-primary-fixed transition-colors" href="#">
+                        Forgot password?
+                    </a>
+</div>
+<!-- Login Button -->
+<button class="w-full h-[56px] bg-primary text-on-primary rounded-lg font-title-md text-title-md flex items-center justify-center gap-2 shadow-lg hover:shadow-primary/20 hover:brightness-110 transition-all active:scale-[0.98] duration-100" type="submit">
+<span>Login to System</span>
+<span class="material-symbols-outlined">login</span>
+</button>
+</form>
+<!-- Language Switcher -->
+<div class="mt-8 pt-6 border-t border-outline-variant/30 flex justify-center items-center gap-4">
+<button class="font-label-caps text-label-caps text-primary">ENGLISH</button>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<button class="font-label-caps text-label-caps text-outline hover:text-on-surface-variant transition-colors">TIẾNG VIỆT</button>
+</div>
+</div>
+</main>
+<!-- Footer Area -->
+<footer class="relative z-10 w-full px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 bg-surface-container/60 backdrop-blur-md px-4 py-2 rounded-full border border-outline-variant/30">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_rgba(195,204,166,0.6)]"></span>
+<span class="font-label-caps text-label-caps text-on-surface">Server Status: Online</span>
+</div>
+<div class="text-center md:text-right">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 ACoffeeHouse Systems. All rights reserved.</p>
+<div class="flex items-center justify-center md:justify-end gap-4 mt-2">
+<a class="font-label-caps text-label-caps text-outline hover:text-on-surface-variant transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-outline hover:text-on-surface-variant transition-colors" href="#">Technical Support</a>
+</div>
+</div>
+</footer>
+</body></html>
